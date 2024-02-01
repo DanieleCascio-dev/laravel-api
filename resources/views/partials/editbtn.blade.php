@@ -1,0 +1,1 @@
+<a class="btn btn-warning mb-1" href="{{route('admin.projects.edit', ['project'=>$project->slug])}}">Edit</a>
