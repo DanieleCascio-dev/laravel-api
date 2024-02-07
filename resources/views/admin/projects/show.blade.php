@@ -21,6 +21,14 @@
     <p><strong>Slug: </strong>{{ $project->slug }}</p>
     <p><strong>Creation date: </strong>{{ $project->created_at }}</p>
     <p><strong>Project Type: </strong>{{ $project->type?->name }}</p>
+    @if ($project->image_path)
+      <div class="mb-3">
+        <p><strong>Image:</strong></p>
+        <img src="{{asset('storage/' .  $project->image_path) }}" alt="">
+      </div>
+    
+        
+    @endif
     
 
     <div class="d-flex gap-2">

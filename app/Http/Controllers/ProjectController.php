@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -41,8 +42,16 @@ class ProjectController extends Controller
     {
         // dd($request);
         $form_data = $request->validated();
+
+        
         $project = new Project();
         $project->fill($form_data);
+        
+        if($request->hasFile('image_path')){
+            $image_path = Storage::put('project_image', $request->image_path);
+            $project->image_path = $image_path;
+
+        };
         $project->save();
 
         if($request->has('technologies')){

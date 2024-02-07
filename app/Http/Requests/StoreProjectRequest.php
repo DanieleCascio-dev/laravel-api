@@ -25,7 +25,8 @@ class StoreProjectRequest extends FormRequest
             'title'=> ['required', 'max:250', 'min:4'],
             'description' => ['max:5000'],
             'type_id'=>'nullable',
-            'technologies'=>'exists:technologies,id'
+            'technologies'=>'exists:technologies,id',
+            'image_path'=>'nullable,image,max:512'
 
         ];
     }
@@ -36,7 +37,8 @@ class StoreProjectRequest extends FormRequest
             'title.max'=> 'Title max lenght is 250 chars!',
             'title.min'=> 'Title min lenght is 4 chars!',
             'description.max'=> 'Description max lenght is 5000 chars!',
-            'technologies.exists'=>'The tehcnologies you have selected does not exist!'
+            'technologies.exists'=>'The tehcnologies you have selected does not exist!',
+            'image_path.image'=>'The file must be an image!',
             
         ];
     }
