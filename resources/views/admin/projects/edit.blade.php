@@ -20,7 +20,7 @@
     </div>
     @endif
 
-    <form action="{{ route('admin.projects.update',['project'=>$project->slug]) }}" method="POST">
+    <form action="{{ route('admin.projects.update',['project'=>$project->slug]) }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="mb-3">
@@ -33,6 +33,10 @@
         <textarea class="form-control" id="description" rows="2" name="description"> {{ old('description') ?? $project->description }} </textarea>
       </div>
 
+      <div class="mb-3">
+        <label for="image_path" class="form-label">Image</label>
+        <input class="form-control" type="file" id="image_path" name="image_path">
+      </div>
       
       <div class="mb-3">
         <label for="type" class="form-label">Project Type</label>

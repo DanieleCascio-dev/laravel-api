@@ -46,7 +46,7 @@ class ProjectController extends Controller
         
         $project = new Project();
         $project->fill($form_data);
-        
+
         if($request->hasFile('image_path')){
             $image_path = Storage::put('project_image', $request->image_path);
             $project->image_path = $image_path;
@@ -91,6 +91,15 @@ class ProjectController extends Controller
     {
         $project_to_update = $request->validated();
         $project = Project::where('slug',$slug)->first();
+
+        if($request->hasFile('image_path')){
+            if($project->image_path){
+                Storage::delete($project->image_path);
+            }
+            $path = Storage::put('project_image', $request->image_path);
+            $project_to_update['image_path'] = $path;
+        }
+        
         $project->update($project_to_update);
 
         if($request->has('technologies')){
